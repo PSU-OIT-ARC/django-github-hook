@@ -38,7 +38,7 @@ class HookView(GenericAPIView):
         # BitBucket: repository['owner'] = name
         user = info.get('owner', {})
         if isinstance(user, dict):
-            user = user.get('name', None)
+            user = user.get('name', None) or user.get('login', None)
 
         if not name and not repo and not user:
             raise ParseError(
